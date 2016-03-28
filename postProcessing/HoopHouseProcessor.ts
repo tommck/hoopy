@@ -27,11 +27,14 @@ export class HoopHouseProcessor implements IStatsProcessor {
             let msg = 'Hoopy House is HOT!';
             let body = 'Exceeded Maximum temperature of ' + config.hoopHouseThresholds.max + 'F.\nLast Temp: ' + exceededMax.temperature + 'F';
             sendPushbulletNotification(config.hoopHouseThresholds.email, msg, body);
+            sendPushbulletNotification(config.tomsPhone, msg, body);
+
         }
         else if (exceededMin) {
             let msg = 'Hoopy House is COLD!';
             let body = 'Hit Temp below min of ' + config.hoopHouseThresholds.min + 'F.\nLast Temp: ' + exceededMin.temperature + 'F';
             sendPushbulletNotification(config.hoopHouseThresholds.email, msg, body);
+            sendPushbulletNotification(config.tomsPhone, msg, body);
         }
     }
 }
