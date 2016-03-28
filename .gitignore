@@ -48,6 +48,7 @@ Temporary Items
 
 # Node files
 node_modules
+npm-debug.log
 
 # Typescript artifacts
 *.js
