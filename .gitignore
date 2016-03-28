@@ -45,3 +45,15 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Node files
+node_modules
+
+# Typescript artifacts
+*.js
+*.js.map
+typings
+*.csv
+
+# files with secress
+run.ps1

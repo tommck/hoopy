@@ -1,0 +1,33 @@
+{
+  "name": "hoopy",
+  "version": "0.1.0",
+  "description": "server to listen to hoopy house IoT data",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqp10": "^3.0.0",
+    "azure-iothub": "^1.0.1",
+    "azure-storage": "^0.8.0",
+    "bluebird": "^3.3.4",
+    "http": "0.0.0",
+    "httpdispatcher": "^1.0.0",
+    "moment": "^2.12.0",
+    "pushbullet": "^1.4.3",
+    "request": "^2.69.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3"
+  },
+  "devDependencies": {
+    "eslint": "^2.3.0",
+    "tsc": "^1.20150623.0",
+    "typescript": "^1.8.7",
+    "typings": "^0.7.5"
+  },
+  "scripts": {
+    "start": "npm run tsc && ./run.ps1",
+    "tsc": "tsc",
+    "typings": "typings",
+    "postinstall": "typings install"
+  }
+}

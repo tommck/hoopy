@@ -1,0 +1,30 @@
+{
+    "pushbullet": {
+        "apiKey": "blah blah",
+        "devices": {
+            "tomsPhone": "ujvOiMZGmU8sjAiVsKnSTs",
+            "tomsChrome": "ujvOiMZGmU8sjAsoeMFET6"
+        }
+    },
+    "hoopHouseThresholds": {
+      "min": 32,
+      "max": 90,
+      "email": "foo@bar.com"
+    },
+    "tomsOffice": {
+        "maxTemp": 80,
+        "minTemp": 60  
+    },
+    "http": {
+        "port": 8080
+    },
+    "hostsToIgnore": [
+        "ian-inside"
+    ],
+    "ifttt": {
+        "key": "blah blah"
+    },
+    "azure": {
+        "storageConnectionString": "blah blah"
+    }
+}
