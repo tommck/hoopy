@@ -30,10 +30,9 @@ export class AzureTableStorageProcessor implements IStatsProcessor {
 
     processEntries(hostName: string, entries: ITableEntry[]) {
 
-        // TODO: BATCH 
-        let self = this;
-        entries.forEach(function (entry) {
-            self.uploadEntryToAzure(entry);
+        // TODO: BATCH
+        entries.forEach((entry) => {
+            this.uploadEntryToAzure(entry);
         });
     }
 

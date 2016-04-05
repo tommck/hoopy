@@ -1,15 +1,15 @@
 import {IStatsProcessor} from './IStatsProcessor';
 import {ITableEntry} from '../TableEntry';
 import {config} from '../config';
-import {iftttPost} from '../ifttt';
+import {iftttPost} from '../services/ifttt';
 
 export class TomsOfficeProcessor implements IStatsProcessor {
     processEntries(hostName: string, entries: ITableEntry[]) {
         if (hostName !== 'toms-office') {
             return;
         }
-         
-        let exceededMax = null; 
+
+        let exceededMax = null;
         let exceededMin = null;
 
         entries.forEach(function(entry) {
@@ -20,12 +20,12 @@ export class TomsOfficeProcessor implements IStatsProcessor {
                 exceededMin = entry;
             }
         });
-        
+
         if (exceededMax) {
-            iftttPost('hot-office', exceededMax.temperature);
+            iftttPost('hot-office', exceededMax.temp);
         }
         else if (exceededMin) {
-            iftttPost('cold-office', exceededMin.temperature);
+            iftttPost('cold-office', exceededMin.temp);
         }
     }
 }

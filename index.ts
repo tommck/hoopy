@@ -2,9 +2,9 @@ import {config} from './config';
 import {TableEntry} from './TableEntry';
 import {AllProcessors} from './postProcessing/Processors';
 
-let http = require('http');
-let dispatcher = require('httpdispatcher');
-let moment = require('moment');
+const http = require('http');
+const dispatcher = require('httpdispatcher');
+const moment = require('moment');
 
 // use dispatcher
 function handleRequest(request, response) {
@@ -16,7 +16,7 @@ function handleRequest(request, response) {
 }
 
 // Create a server
-let server = http.createServer(handleRequest);
+const server = http.createServer(handleRequest);
 
 // start our server
 server.listen(config.http.port, function() {
@@ -24,7 +24,7 @@ server.listen(config.http.port, function() {
     console.log('Server listening on: http://localhost:%s', config.http.port);
 });
 
-// GET request for simple testing    
+// GET request for simple testing
 dispatcher.onGet('/stats', function(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/plain' });
     res.end('No Stats For You!');
@@ -33,7 +33,7 @@ dispatcher.onGet('/stats', function(req, res) {
 // Post from sensors
 dispatcher.onPost('/stats', function(req, res) {
     // get starting point for going back in time for values
-    let postReceivedTime = moment();
+    const postReceivedTime = moment();
 
     console.log('\u0007'); // BEEP!
 
@@ -41,14 +41,14 @@ dispatcher.onPost('/stats', function(req, res) {
     res.end('Got Post Data');
 
     try {
-        let stats = JSON.parse(req.body);
+        const stats = JSON.parse(req.body);
 
         // note: i just picked a length because they're all the same length
         let length = stats.temps.length;
         let entries = [];
         for (let i = 0; i < length; ++i) {
 
-            // entries are in time order, this needs to be (length-iteration-1) minutes old. (from 29-0 minutes ago)
+            // entries are in time order, this needs to be (length-iteration-1) minutes old. (e.g. from 29-0 minutes ago)
             let entryTime = moment(postReceivedTime).subtract(length - i - 1, 'minutes');
 
             let entry = new TableEntry(
@@ -56,7 +56,8 @@ dispatcher.onPost('/stats', function(req, res) {
                 entryTime.toDate(),
                 stats.temps[i],
                 stats.humidity[i],
-                stats.battery[i]);
+                stats.battery[i],
+                stats.version > 5 ? stats.soilTemp[i] : -1);
 
             entries.push(entry);
         }

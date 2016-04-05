@@ -7,6 +7,7 @@ export interface ITableEntry {
     temp: number;
     humidity: number;
     battery: number;
+    soilTemp: number;
     toTableEntity(): any;
 }
 
@@ -17,7 +18,8 @@ export class TableEntry implements ITableEntry {
         public date: Date,
         public temp: number,
         public humidity: number,
-        public battery: number) {
+        public battery: number,
+        public soilTemp: number) {
     }
 
     public toTableEntity(): any {
@@ -32,7 +34,8 @@ export class TableEntry implements ITableEntry {
             RowKey: entityGenerator.String(rowKey.toString()),
             temp: entityGenerator.Double(this.temp),
             humidity: entityGenerator.Double(this.humidity),
-            battery: entityGenerator.Int32(this.battery)
+            battery: entityGenerator.Int32(this.battery),
+            soilTemp: entityGenerator.Double(this.soilTemp)
         };
     };
 }

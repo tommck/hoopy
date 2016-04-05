@@ -2,7 +2,7 @@ import {IStatsProcessor} from './IStatsProcessor';
 import {ITableEntry} from '../TableEntry';
 import {config} from '../config';
 
-let fs = require('fs');
+const fs = require('fs');
 
 export class CsvFileStorageProcessor implements IStatsProcessor {
 
@@ -12,19 +12,15 @@ export class CsvFileStorageProcessor implements IStatsProcessor {
     processEntries(hostName: string, entries: ITableEntry[]) {
 
         let self = this;
-        entries.forEach(function(entry) {
+        entries.forEach((entry) => {
 
-            let output = entry.deviceId + ', '
-                + entry.date.toString() + ', '
-                + entry.temp + ', '
-                + entry.humidity + ', '
-                + entry.battery;
+            let output = `${entry.deviceId}, ${entry.date}, ${entry.temp}, ${entry.humidity}, ${entry.battery}, ${entry.soilTemp}`;
 
             if (self._logToConsole) {
                 console.log(output);
             }
 
-            fs.appendFile(self._fileName, output + '\r\n');
+            fs.appendFile(self._fileName, `${output}\r\n`);
         });
     }
 }

@@ -1,4 +1,21 @@
 {
+    "azure": {
+        "storageConnectionString": "blah blah"
+    },
+    "hoopHouseThresholds": {
+        "min": 32,
+        "max": 90,
+        "email": "foo@bar.com"
+    },
+    "hostsToIgnore": [
+        "ian-inside"
+    ],
+    "http": {
+        "port": 8080
+    },
+    "ifttt": {
+        "key": "blah blah"
+    },
     "pushbullet": {
         "apiKey": "blah blah",
         "devices": {
@@ -6,25 +23,22 @@
             "tomsChrome": "ujvOiMZGmU8sjAsoeMFET6"
         }
     },
-    "hoopHouseThresholds": {
-      "min": 32,
-      "max": 90,
-      "email": "foo@bar.com"
+    "thingSpeak": {
+        "channelMap": [
+            {
+                "name": "tom-office",
+                "channel": 104075,
+                "key": "foo"
+            },
+            {
+                "name": "hoopy-inside",
+                "channel": 104078,
+                "key": "bar"
+            }
+        ]
     },
     "tomsOffice": {
         "maxTemp": 80,
-        "minTemp": 60  
-    },
-    "http": {
-        "port": 8080
-    },
-    "hostsToIgnore": [
-        "ian-inside"
-    ],
-    "ifttt": {
-        "key": "blah blah"
-    },
-    "azure": {
-        "storageConnectionString": "blah blah"
+        "minTemp": 60
     }
 }

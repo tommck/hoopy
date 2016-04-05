@@ -1,4 +1,4 @@
-import {config} from './config';
+import {config} from '../config';
 
 let PushBullet = require('pushbullet');
 let pusher = new PushBullet(config.pushbullet.apiKey);

@@ -10,13 +10,15 @@
     "azure-iothub": "^1.0.1",
     "azure-storage": "^0.8.0",
     "bluebird": "^3.3.4",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "^0.33.3",
     "http": "0.0.0",
     "httpdispatcher": "^1.0.0",
     "moment": "^2.12.0",
     "pushbullet": "^1.4.3",
     "request": "^2.69.0",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.3"
+    "rx-node": "^1.0.2",
+    "thingspeakclient": "^0.4.0"
   },
   "devDependencies": {
     "eslint": "^2.3.0",
@@ -25,7 +27,7 @@
     "typings": "^0.7.5"
   },
   "scripts": {
-    "start": "npm run tsc && ./run.ps1",
+    "start": "./run.ps1",
     "tsc": "tsc",
     "typings": "typings",
     "postinstall": "typings install"
