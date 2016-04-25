@@ -3,8 +3,14 @@
         "storageConnectionString": "blah blah"
     },
     "hoopHouseThresholds": {
-        "min": 32,
-        "max": 90,
+        "ambient": {
+            "min": 32,
+            "max": 95
+        },
+        "soil": {
+            "min": 35,
+            "max": 75
+        },
         "email": "foo@bar.com"
     },
     "hostsToIgnore": [

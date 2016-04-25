@@ -6,6 +6,10 @@ const http = require('http');
 const dispatcher = require('httpdispatcher');
 const moment = require('moment');
 
+
+// Create a server
+const server = http.createServer(handleRequest);
+
 // use dispatcher
 function handleRequest(request, response) {
     try {
@@ -15,9 +19,6 @@ function handleRequest(request, response) {
     }
 }
 
-// Create a server
-const server = http.createServer(handleRequest);
-
 // start our server
 server.listen(config.http.port, function() {
     // Callback triggered when server is successfully listening. Hurray!
@@ -25,20 +26,20 @@ server.listen(config.http.port, function() {
 });
 
 // GET request for simple testing
-dispatcher.onGet('/stats', function(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('No Stats For You!');
+dispatcher.onGet('/stats', function(request, response) {
+    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.end('No Stats For You!');
 });
 
 // Post from sensors
-dispatcher.onPost('/stats', function(req, res) {
+dispatcher.onPost('/stats', function(req, response) {
     // get starting point for going back in time for values
     const postReceivedTime = moment();
 
     console.log('\u0007'); // BEEP!
 
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Got Post Data');
+    response.writeHead(200, { 'Content-Type': 'text/plain' });
+    response.end('Got Post Data');
 
     try {
         const stats = JSON.parse(req.body);
@@ -63,8 +64,13 @@ dispatcher.onPost('/stats', function(req, res) {
         }
         if (config.hostsToIgnore.indexOf(req.headers.host) === -1) {
 
-            AllProcessors.forEach(function(proc) {
-                proc.processEntries(req.headers.host, entries);
+            AllProcessors.forEach(function(procMap) {
+                try {
+                    procMap.proc.processEntries(req.headers.host, entries);
+                }
+                catch (e) {
+                    console.error(`Error With "${procMap.name}": ${e}`);
+                }
             });
         }
     }

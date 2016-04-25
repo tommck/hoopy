@@ -6,7 +6,9 @@ const fs = require('fs');
 
 export class CsvFileStorageProcessor implements IStatsProcessor {
 
-    constructor(private _fileName: string = 'stats.csv', private _logToConsole: boolean = false) {
+    constructor(
+        private _fileName: string = 'stats.csv',
+        private _logToConsole: boolean = false) {
     }
 
     processEntries(hostName: string, entries: ITableEntry[]) {

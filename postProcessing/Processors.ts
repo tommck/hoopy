@@ -5,10 +5,15 @@ import {AzureTableStorageProcessor} from './AzureTableStorageProcessor';
 import {HoopHouseProcessor} from './HoopHouseProcessor';
 import {ThingSpeakProcessor} from './ThingSpeakProcessor';
 
-export const AllProcessors: IStatsProcessor[] = [
-    new HoopHouseProcessor(),
-    new TomsOfficeProcessor(),
-    new AzureTableStorageProcessor(),
-    new CsvFileStorageProcessor('stats.csv', true),
-    new ThingSpeakProcessor()
+interface ProcMap {
+    name: string;
+    proc: IStatsProcessor;
+};
+
+export const AllProcessors: ProcMap[] = [
+    { name: 'HoopHouseProcessor', proc: new HoopHouseProcessor() },
+    { name: 'TomsOfficeProcessor', proc: new TomsOfficeProcessor() },
+    { name: 'AzureTableStorageProcessor', proc: new AzureTableStorageProcessor() },
+    { name: 'CsvFileStorageProcessor', proc: new CsvFileStorageProcessor('stats.csv', true) },
+    { name: 'ThingSpeakProcessor', proc: new ThingSpeakProcessor() }
 ];

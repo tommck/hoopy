@@ -46,10 +46,15 @@ export class ThingSpeakProcessor implements IStatsProcessor {
                 let fields = {
                     field1: entry.temp,
                     field2: entry.humidity,
-                    field3: entry.battery,
+                    field3: undefined,
                     field4: entry.soilTemp,
                     created_at: moment(entry.date).format()
                 };
+
+                // if there's a valid battery measurement, add it
+                if (entry.battery !== -1 && entry.battery !== 1024) {
+                    fields.field3 = entry.battery;
+                }
 
                 self._client.updateChannel(mapEntry.channel, fields, (err, resp) => {
                     if (err || resp <= 0) {
